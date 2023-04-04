@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+* {
+  margin: 0%;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: sans-serif, "SpaceMono" !important;
+}
+
+body {
+  width: 100vw !important;
+  height: 100%;
+  background-color: black;
+  overflow-x: hidden;
+}
+
+.vid-con {
+  position: absolute;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 99vw;
+  display: grid;
+  row-gap: 50px;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+.vid-con .video {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 300px;
+  width: clamp(250px, 2vw, 1fr);
+}
+.vid-con .video h3 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: monospace, "Roboto", "Arial", sans-serif;
+  color: #dfdcd8;
+  text-overflow: ellipsis;
+}
+.vid-con .video h4 {
+  margin-top: 10px;
+  font-size: 10px;
+  font-family: monospace, "Roboto", "Arial", sans-serif;
+  color: #5f5f5f;
+  text-overflow: ellipsis;
+}
+.vid-con .video video {
+  border: 1px white dotted;
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: 100%;
+}
+.vid-con .video:nth-child(5), .vid-con .video:nth-child(6), .vid-con .video:nth-child(7) {
+  width: clamp(320px, 20vw, 400px);
+}
+.vid-con .video:nth-child(5) video, .vid-con .video:nth-child(6) video, .vid-con .video:nth-child(7) video {
+  aspect-ratio: 1.5/1;
+}
+
+.src {
+  position: fixed;
+  z-index: 100;
+  height: 60px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.src input {
+  margin-top: 20px;
+}
+
+@media (max-width: 709px) {
+  .vid-con {
+    row-gap: clamp(200px, 10vw, 400px);
+  }
+  .vid-con .video {
+    width: 90vw !important;
+  }
+}/*# sourceMappingURL=style.css.map */
