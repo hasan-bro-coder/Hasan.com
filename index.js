@@ -825,7 +825,7 @@ gsap.to(".cen",{
 		// markers: true,
 		end: () => "+=" + (document.querySelector(".cen").offsetWidth - 50)
 	},
-	opacity: 1,
+	opacity: 2,
 	// rotation: 180,
 	y: 150,
 	left: 0,
@@ -902,7 +902,7 @@ let l = document.getElementById("#loder");
 ee = 0;
 document.querySelector('.ele').onclick = () => {
 		scrollToTop();
-		console.log("scrollToTop");
+		//console.log("scrollToTop");
 	  }
 	  
 window.addEventListener("load", async () => {
@@ -924,7 +924,7 @@ window.addEventListener("load", async () => {
 			element.innerHTML = i
 				.split("")
 				.map((le, ind) => {
-					console.log(le);
+					//console.log(le);
 					if(le == " "){
 						return ""
 					}
