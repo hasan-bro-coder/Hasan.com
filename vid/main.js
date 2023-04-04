@@ -62,7 +62,7 @@ let videos = [
 document.querySelectorAll("video").forEach((el, i) => {
     // let k:string = new Date().toLocaleTimeString();
     // if(tr){
-    el.controls = false; // prevent
+    el.controls = true; // prevent
     // el.children[1].innerHTML = el.children[1].innerHTML.split(" ").length.toLocaleString();
     // }
     //  console.log(,k);
