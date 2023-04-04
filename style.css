@@ -193,11 +193,11 @@ div.main {
 .mid p {
   padding: 0px;
   margin: 80px 0px;
-  font-size: 26px;
+  font-size: 1.3rem;
 }
 .mid p span:nth-child(1) {
   color: rgb(3, 126, 195);
-  font-size: 25px;
+  font-size: 1.4rem;
   -webkit-text-stroke-width: 0.8px;
   background-size: 200%;
 }
