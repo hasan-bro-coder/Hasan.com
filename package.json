@@ -9,12 +9,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.1.4"
+    "vite": "^5.4.11"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.40",
     "aos": "^2.3.4",
     "gsap": "^3.12.5",
+    "three": "^0.130.1",
     "typed.js": "^2.1.0"
   }
 }

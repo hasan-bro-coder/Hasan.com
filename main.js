@@ -1,28 +1,18 @@
 import gsap from "gsap";
 
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-import AOS from "aos"
 
-import 'aos/dist/aos.css'
+import("aos").then(aos => aos.init())
 
-import Lenis from '@studio-freight/lenis'
+import('aos/dist/aos.css')
+
+
 
 import Typed from 'typed.js';
 
-import * as THREE from "https://unpkg.com/three@0.127.0/build/three.module";
-
-import { OrbitControls } from "https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls";
 // -- vars --
 
-let mobile =
-  navigator.userAgent.match(/Android/i) ||
-  navigator.userAgent.match(/webOS/i) ||
-  navigator.userAgent.match(/iPhone/i) ||
-  navigator.userAgent.match(/iPad/i) ||
-  navigator.userAgent.match(/iPod/i) ||
-  navigator.userAgent.match(/BlackBerry/i) ||
-  navigator.userAgent.match(/Windows Phone/i);
+
 let torus;
 
 function sleep(ms) {
@@ -32,7 +22,7 @@ function hackerAnimation(el, onend) {
   let ll = "ABDEFGHIJKLMNOPQRSTUVWXYUZabcdefghijklmnopqrstuvwxyz1234567890"
   let ee = 0;
   document.querySelectorAll(el).forEach(async (element) => {
-    let i = element.innerText;
+    let i = "HASAN";
     let ii = setInterval(() => {
       element.innerHTML = i
         .split("")
@@ -51,10 +41,8 @@ function hackerAnimation(el, onend) {
         clearInterval(ii);
         ee = 0;
       }
-      ee += 1 / 4;
-      if (ee >= 1) {
-        return "<br> ";
-      }
+      ee += 1 / 12;
+     
     }, 30);
   })
 }
@@ -71,19 +59,11 @@ async function anime() {
       scrub: 1,
     }
   })
-  gsap.to(
-    torus.scale,
-    {
-      duration: 1,
-      z: 1,
-      x: 1,
-      y: 1,
-      // ease: CustomEase.create("custom", "M0,0 C0,0 0.115,-0.001 0.185,0.006 0.24,0.012 0.277,0.018 0.33,0.035 0.378,0.051 0.411,0.067 0.455,0.094 0.503,0.124 0.427,0.061 0.468,0.102 0.513,0.147 0.578,0.304 0.616,0.358 0.662,0.423 0.693,0.561 0.732,0.634 0.776,0.719 0.802,0.83 0.84,0.92 0.882,1.024 1,0.872 1,0.872 ")
-    }
-  );
+
 }
-function loder() {
-  sleep(1)
+async function loder() {
+  await sleep(1000);
+
   document.querySelector(".hh3").style.opacity = 1
   hackerAnimation(".hh3", () => {
 
@@ -92,215 +72,31 @@ function loder() {
 
       clipPath: "circle(0% at 100% 100%)",
       // ease: Power4.easeOut,
-      onComplete:async ()=>{
+      onComplete: async () => {
         await sleep(1000);
         anime()
       }
     });
   })
 }
-async function threed() {
-  let material;
-  let geometry;
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    10000
-  );
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector(".bg"),
-    alpha: true,
-  });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.setZ(100);
-  renderer.render(scene, camera);
-  if (!mobile) {
-    geometry =
-      // new THREE.TorusGeometry( 15, 5, 16, 100 );
-      // new THREE.TorusKnotGeometry( 15,3,100,16,1,1 );
-      new THREE.SphereGeometry(15, 100, 100);
-    // new THREE.DodecahedronGeometry(15,5)
-    material = new THREE.MeshStandardMaterial({
-      // flatShading:true,
-      // depthTest: false,
-      // depthWrite: false,
-      color: 0x049ef4,
-      // wireframe:true,
-      roughness: 0.4,
-    });
-    torus = new THREE.Mesh(geometry, material);
-
-    scene.add(torus);
-  } else {
-    let geometry = new THREE.TorusGeometry(10, 4, 16, 100);
-    // new THREE.TorusKnotGeometry( 15,3,100,16,1,1 );
-    // new THREE.SphereGeometry(15, 64, 64);
-    // new THREE.DodecahedronGeometry(15,5)
-    material = new THREE.MeshToonMaterial({
-      flatShading: true,
-      // depthTest: false,
-      // depthWrite: false,
-      color: 0x049ef4,
-      // wireframe:true,
-      // roughness: 0.4,
-    });
-    torus = new THREE.Mesh(geometry, material);
-
-    scene.add(torus);
-  }
-  const pointLight = new THREE.PointLight(0xffffff, 0.8);
-  pointLight.position.set(40, 30, 90);
 
 
-  // const ambientLight = new THREE.AmbientLight(0xffffff);
-  // scene.add(ambientLight);
-  const lightHelper = new THREE.PointLightHelper(pointLight);
-  // const gridHelper = new THREE.GridHelper(200, 50);
-
-  const controls = new OrbitControls(camera, document.querySelector(".bg"));
-  // const controls2 = new FlyControls(camera, document.querySelector('.bg'))
-
-  // controls2.dragToLook = true;
-  // controls2.autoForward = true;
-  // controls.controls = false;
-  // controls.
-  // if()
-
-  // console.log(navigator.storage.getDirectory("myweb"));
-  if (mobile) {
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.5;
-
-    controls.enabled = false;
-  } else {
-    controls.enableDamping = true;
-    controls.enablePan = false;
-    controls.enableZoom = false;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 3;
-    controls.keyPanSpeed = "20px";
-  }
-  scene.add(lightHelper, pointLight);
-
-  let mon = new THREE.TextureLoader().load(
-    "https://raw.githubusercontent.com/fireship-io/threejs-scroll-animation-demo/main/moon.jpg"
-  );
-
-  let geometry1 =
-    // new THREE.TorusGeometry( 15, 3, 16, 100 );
-    // new THREE.TorusKnotGeometry( 15,3,100,16,1,1 );
-    new THREE.SphereGeometry(5, 100, 100);
-  // new THREE.DodecahedronGeometry(15,5)
-  const material1 = new THREE.MeshToonMaterial({
-    map: mon,
-    flatShading: true,
-    // depthTest: false,
-    // depthWrite: false,
-    // color:0x049ef4 ,
-    // wireframe:true,
-    // roughness: 0.4
-  });
-  let moon = new THREE.Mesh(geometry1, material1);
-  scene.add(moon);
-  moon.position.x = pointLight.position.x;
-  moon.position.y = pointLight.position.y;
-  moon.position.z = pointLight.position.z;
-
-  let geometry2 =
-    // new THREE.TorusGeometry( 15, 3, 16, 100 );
-    // new THREE.TorusKnotGeometry( 15,3,100,16,1,1 );
-    new THREE.SphereGeometry(5, 100, 100);
-  // new THREE.DodecahedronGeometry(15,5)
-  const material2 = new THREE.MeshStandardMaterial({
-    // map: mon,
-    flatShading: true,
-    // depthTest: false,
-    // depthWrite: false,
-    // color:0x049ef4 ,
-    // wireframe:true,
-    // roughness: 0.4
-  });
-  let mouse = new THREE.Mesh(geometry2, material2);
-  // scene.add(mouse);
-
-  function addStar() {
-    const geometry = new THREE.SphereGeometry(0.3, 24, 24);
-    const material = new THREE.MeshStandardMaterial({
-      // flatShading:true,
-      // depthTest: false,
-      // depthWrite: false,
-      // color:0x049ef4 ,
-      // wireframe:true,
-      roughness: 0.4,
-      color: 0xffffff,
-    });
-    const star = new THREE.Mesh(geometry, material);
-
-    const z = THREE.MathUtils.randFloatSpread(100);
-    let x = THREE.MathUtils.randFloatSpread(window.innerWidth / 6.5);
-    let y = THREE.MathUtils.randFloatSpread(window.innerHeight / 4.5);
-    star.position.set(x, y, z);
-    scene.add(star);
-  }
-  Array(500).fill().forEach(addStar);
-  function animate() {
-    renderer.render(scene, camera);
-
-    if (mobile) {
-      // document.body.style.overflowX = 'hidden';
-      torus.rotation.x += 0.01;
-      // torus.rotation.z += 5;
-      torus.rotation.y += 0.01;
-
-    }
-    // a = a > 10 ? 0 : c % 10 == 0 ? a+1 : a +0.01;
-    // scene.remove(torus);
-    controls.update();
 
 
-    requestAnimationFrame(animate);
-
-  }
-  animate();
-  torus.scale.x = 0
-  torus.scale.z = 0
-  torus.scale.y = 0
-}
-
-loder()
-threed()
-
-const lenis = new Lenis()
-
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000)
-})
-
-gsap.ticker.lagSmoothing(0)
-
-window.onmousemove = (e) => {
-  let x = e.clientX;
-  let y = e.clientY - 4;
-  document.querySelector(".cur").style.opacity = `1`;
-  document.querySelector(".cur").style.top = `${y}px`;
-  document.querySelector(".cur").style.left = `${x}px`;
-  document.querySelector(".cur").style.opacity = `1`;
-};
+// window.onmousemove = (e) => {
+//   let x = e.clientX;
+//   let y = e.clientY - 4;
+//   document.querySelector(".cur").style.opacity = `1`;
+//   document.querySelector(".cur").style.top = `${y}px`;
+//   document.querySelector(".cur").style.left = `${x}px`;
+//   document.querySelector(".cur").style.opacity = `1`;
+// };
 
 window.onload = function () {
-  AOS.init();
   document.querySelector('#last').onclick = () => {
-    lenis.scrollTo('.main',{duration:8,lock:true,easing:(x)=>x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2})
+    lenis.scrollTo('.main', { duration: 8, lock: true, easing: (x) => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2 })
   }
-  let type = new Typed(".main h1", {
+  new Typed(".main h1", {
     strings: ["Bros", "sis", "coder"],
     // ["bros","sis","man","dog","chad","human","wolf"],
     typeSpeed: 50,
@@ -311,16 +107,8 @@ window.onload = function () {
     // shuffle: true,
     cursorChar: "",
   });
+  loder()
 }
-
-
-
-
-
-
-
-
-
 
 // ---------------------------------
 
