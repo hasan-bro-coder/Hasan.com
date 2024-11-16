@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 
-export let torus
+let torus
 let material;
 let geometry;
 
@@ -41,9 +41,9 @@ export async function threed(tr) {
         // wireframe:true,
         roughness: 0.4,
       });
-      const shape = new THREE.Mesh(geometry, material);
+      torus = new THREE.Mesh(geometry, material);
   
-      scene.add(shape);
+      scene.add(torus);
     } else {
       let geometry = new THREE.TorusGeometry(10, 4, 16, 100);
       // new THREE.TorusKnotGeometry( 15,3,100,16,1,1 );
@@ -182,9 +182,9 @@ export async function threed(tr) {
   
     }
     animate();
-    torus.scale.x = 0
-torus.scale.z = 0
-torus.scale.y = 0
+//     torus.scale.x = 0
+// torus.scale.z = 0
+// torus.scale.y = 0
   }
 
 

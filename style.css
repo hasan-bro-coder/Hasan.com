@@ -39,7 +39,7 @@
 * {
   padding: 0%;
   margin: 0%;
-  color: azure;
+  color: white;
   text-transform: capitalize;
   font-family: monospace;
   box-sizing: border-box;
@@ -55,7 +55,7 @@ body {
   position: fixed;
   top: 0%;
   left: 0%;
-  z-index: 1;
+  z-index: 2;
   height: 90vh;
   width: 100vw;
   -webkit-backface-visibility: hidden;
@@ -80,7 +80,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: rgb(0, 0, 0);
-  z-index: 100000;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,62 +93,26 @@ body {
   opacity: 0;
 }
 
-nav {
-  position: fixed;
-  z-index: 300;
-  top: 0%;
-  left: 0px;
-  width: 98vw;
-  height: 60px;
-  -webkit-backface-visibility: hidden;
-  background: linear-gradient(200deg, rgba(0, 0, 0, 0.4196078431), hsl(0, 0%, 0%), hsla(0, 0%, 0%, 0.397));
-  display: flex;
-  justify-content: center;
-}
-nav h1 {
-  font-size: 0px;
-}
-nav .logo {
-  background-color: transparent;
-  display: flex;
-  align-items: flex-end;
-}
-nav .logo img {
-  animation-fill-mode: both;
-  animation: rotat 3s infinite 2s;
-  width: 100%;
-  height: 70px;
-  -o-object-fit: cover;
-  object-fit: cover;
+.gp {
+  width: 100vw;
+  height: 50vh;
 }
 
-.main {
-  height: 120vh;
-  transform-style: preserve-3d;
-}
-.main img {
-  position: absolute;
-  top: 0;
-  left: 0%;
+.front {
   height: 100vh;
-  width: 100vw;
-  -o-object-fit: cover;
-  object-fit: cover;
-  filter: brightness(80%);
-  z-index: -100;
-  opacity: 0;
 }
-.main h2 {
+.front h2 {
   text-shadow: 3px 1px 1px black;
   font-family: monospace;
   position: absolute;
   display: flex;
-  top: 68vh;
+  bottom: calc(40px + clamp(60px, 8vw, 90px));
   left: 50px;
-  font-size: 90px;
+  font-size: clamp(60px, 8vw, 90px);
   z-index: 2;
+  transition: 1s;
 }
-.main h1 {
+.front h1 {
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(255, 255, 255);
@@ -156,79 +120,72 @@ nav .logo img {
   animation: background-pan 3s linear infinite;
   font-family: monospace;
   position: absolute;
-  top: calc(68vh + 100px);
+  bottom: 40px;
   left: 50px;
-  font-size: 96px;
+  font-size: clamp(60px, 8vw, 90px);
   z-index: 2;
   transition: 1s;
 }
-.main h1:hover {
-  color: white;
-}
-.main br {
-  display: flex;
-}
 
 .mid {
-  position: absolute;
-  top: 140vh;
+  z-index: 1;
   width: 100vw;
-  z-index: 2;
-}
-.mid .content-con {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
 }
-.mid .content-con .content {
-  width: 70vw;
+.mid .con {
+  z-index: 3;
+  width: 50%;
 }
-.mid .content-con .content p {
-  padding: 0px;
-  margin: 80px 0px;
-  font-size: 1.3rem;
+.mid .con h1 {
+  font-size: clamp(40px, 6vw, 70px);
+  font-family: monospace;
+  margin-bottom: 20px;
 }
-.mid .content-con .content p span:nth-child(1) {
-  color: rgb(3, 126, 195);
-  font-size: 1.4rem;
-  -webkit-text-stroke-width: 0.8px;
-  background-size: 200%;
+.mid .con h1 span {
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  font-family: monospace;
+  transition: 1s;
 }
-.mid .content-con .content p span.a {
-  color: rgb(12, 121, 216);
+.mid .con h2 {
+  font-size: 20px;
+  font-family: monospace;
 }
-.mid .content-con .content hr {
-  width: 70vw;
+.mid .con p {
+  font-size: 16px;
+  color: rgb(182, 182, 182);
+  font-family: Calibri, "Trebuchet MS", sans-serif;
 }
 
 .works {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
+  z-index: 3;
+  position: relative;
 }
 .works .programming {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 50px;
 }
 .works .programming h1 {
-  position: absolute;
-  top: 400px;
   font-size: 35px;
 }
 .works .programming .logos {
-  position: absolute;
   display: flex;
   justify-content: center;
-  top: 583px;
-  gap: 4rem;
-  display: flex;
-  flex-wrap: wrap !important;
+  align-items: center;
+  gap: 5vw;
 }
-.works .programming .logos img:nth-child(6) {
-  margin-top: 20px;
-}
-.works .logos img {
+.works .programming .logos img {
   animation: pan 3s infinite ease-in-out;
   transition: 500ms !important;
   display: inline;
@@ -237,41 +194,44 @@ nav .logo img {
   position: relative;
   filter: brightness(100%) contrast(80%) saturate(0%);
 }
-.works .logos img:nth-child(1) {
+.works .programming .logos img:nth-child(6) {
+  margin-top: 20px;
+}
+.works .programming .logos img:nth-child(1) {
   animation-delay: 3s;
   width: 60px;
   -o-object-fit: cover;
   object-fit: cover;
 }
-.works .logos img:nth-child(1):hover {
+.works .programming .logos img:nth-child(1):hover {
   width: 60px;
   -o-object-fit: cover;
   object-fit: cover;
 }
-.works .logos img:nth-child(2) {
+.works .programming .logos img:nth-child(2) {
   animation-delay: 3s;
   width: 60px;
   -o-object-fit: cover;
   object-fit: cover;
 }
-.works .logos img:nth-child(2):hover {
+.works .programming .logos img:nth-child(2):hover {
   width: 60px;
   -o-object-fit: cover;
   object-fit: cover;
 }
-.works .logos img:nth-child(5) {
+.works .programming .logos img:nth-child(5) {
   animation-delay: 4s;
   height: 60px;
   margin-top: 20px;
   margin-left: 0px;
   width: 60px;
 }
-.works .logos img:nth-child(5):hover {
+.works .programming .logos img:nth-child(5):hover {
   height: 65px;
   margin-top: 20px;
   width: 65px;
 }
-.works .logos img:nth-child(6) {
+.works .programming .logos img:nth-child(6) {
   animation-delay: 4s;
   height: 60px;
   margin-top: 20px;
@@ -282,84 +242,89 @@ nav .logo img {
   margin-top: 20px;
   width: 60px;
 }
-.works .logos img:nth-child(6):hover {
+.works .programming .logos img:nth-child(6):hover {
   height: 65px;
   margin-top: 20px;
   width: 65px;
 }
-.works .logos img:hover {
+.works .programming .logos img:hover {
   transition: 1s !important;
   height: 100px;
   width: 100px;
   filter: brightness(100%) contrast(100%);
 }
-.works .logos img:nth-child(3) {
+.works .programming .logos img:nth-child(3) {
   animation-delay: 5s;
   height: 60px;
   margin-top: 20px;
   width: 60px;
 }
-.works .logos img:nth-child(3):hover {
+.works .programming .logos img:nth-child(3):hover {
   height: 65px;
   margin-top: 20px;
   width: 65px;
 }
-.works .logos img:nth-child(4) {
+.works .programming .logos img:nth-child(4) {
   animation-delay: 5s;
   height: 60px;
   margin-top: 20px;
   width: 60px;
 }
-.works .logos img:nth-child(4):hover {
+.works .programming .logos img:nth-child(4):hover {
   height: 65px;
   margin-top: 20px;
   width: 65px;
 }
-.works .projects .project-con {
-  position: absolute;
-  top: 1030px;
-  left: 0px;
+
+.projects {
+  height: 300vh;
+  width: 300vw;
+  z-index: 3;
+}
+.projects .project-con {
   width: 100% !important;
+  position: absolute;
   overflow-x: visible;
   scrollbar-width: none;
   height: 100vh;
   display: flex;
   gap: 25vw;
   padding: 0 25vw;
+  z-index: 3;
 }
-.works .projects .project-con .project {
+.projects .project-con .project {
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.works .projects .project-con .project .main {
+.projects .project-con .project .main {
   width: 50vw;
   height: 70vh;
 }
-.works .projects .project-con .project .main img {
+.projects .project-con .project .main img {
   background-color: gray;
   width: 50vw;
   height: 70vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.works .projects .project-con .project .main .top {
+.projects .project-con .project .main .top {
   height: 20%;
   width: 100%;
 }
-.works .projects .project-con .project .main .top .tab {
+.projects .project-con .project .main .top .tab {
   width: 100%;
   height: 45%;
   display: flex;
   justify-content: center;
   background: #000000;
 }
-.works .projects .project-con .project .main .top .tab .notname {
+.projects .project-con .project .main .top .tab .notname {
   width: 60%;
   height: 100%;
 }
-.works .projects .project-con .project .main .top .tab .name {
+.projects .project-con .project .main .top .tab .name {
   border: 1px solid white;
   border-top-left-radius: 1px;
   border-top-right-radius: 8px;
@@ -372,7 +337,7 @@ nav .logo img {
   align-items: center;
   border-bottom: none;
 }
-.works .projects .project-con .project .main .top .search {
+.projects .project-con .project .main .top .search {
   width: 100%;
   height: 50%;
   background-color: rgb(49, 49, 49);
@@ -385,15 +350,16 @@ nav .logo img {
 
 .credit-con {
   width: 100vw;
-  position: absolute;
-  top: 2725px;
-  left: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 .credit-con .credit {
-  width: 430px;
+  z-index: 3;
+  width: -moz-min-content;
+  width: min-content;
 }
 .credit-con .credit h1:first-child {
   color: transparent;
@@ -413,6 +379,7 @@ nav .logo img {
   display: inline;
 }
 .credit-con .credit .google a {
+  text-decoration: none;
   text-transform: lowercase;
   margin-left: 10px;
   font-size: 30px;
@@ -540,14 +507,17 @@ nav .logo img {
 }
 
 .last {
-  display: block;
-  position: absolute;
+  position: relative;
   height: 100vh;
+  display: grid;
+  z-index: 3;
+  grid-template-rows: 50px 1fr 150px;
+  grid-template-columns: 1fr;
+  flex-direction: column;
   width: 100vw;
-  z-index: 200;
-  bottom: 0;
-  top: 750vh;
   overflow: hidden;
+  background-color: #000000;
+  outline: 1px white solid;
 }
 .last h1:first-child {
   color: transparent;
@@ -555,33 +525,28 @@ nav .logo img {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(255, 255, 255);
 }
-.last .contact {
-  width: calc(100vw - 2px);
-  height: calc(100vh - 60px);
-  margin-left: 1px;
-  outline: 1px white solid;
-  background-color: #000000;
-}
-.last .contact #last {
-  position: absolute;
-  top: 0;
+.last #last {
+  z-index: 3;
   width: 100vw;
-  height: clamp(300px, 100vh - 60px, 800px);
+  height: 150px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
   color: white;
   font-size: 20px;
 }
-.last .contact #last button {
+.last #last button {
   background-color: transparent;
   border: none;
   margin-bottom: 0px;
   font-size: 40px;
 }
-.last .contact #last h3 {
+.last #last h2 {
   font-family: Cinzel Decorative;
+}
+.last .contact h2 {
+  font-size: 17px;
 }
 .last .contact .cc {
   display: inline-block;
@@ -595,10 +560,10 @@ nav .logo img {
 .last .contact .cc ul li {
   color: gray;
   display: block;
-  font-size: 20px;
-  line-height: 40px;
+  font-size: 15px;
+  line-height: 30px;
   text-decoration: none;
-  font-family: ui-monospace;
+  font-family: monospace;
 }
 .last .contact .c1 {
   margin-left: calc((100vw - 7px) / 6);
@@ -648,14 +613,4 @@ nav .logo img {
   -webkit-transition: 2s;
   transition: 2s;
   background-color: transparent;
-}
-
-@media (max-width: 700px) {
-  * {
-    cursor: default;
-  }
-  .cur {
-    display: none;
-    opacity: 0;
-  }
 }/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,3 @@
-import gsap from "gsap";
 
 
 
@@ -10,6 +9,21 @@ import('aos/dist/aos.css')
 
 import Typed from 'typed.js';
 
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Lenis from '@studio-freight/lenis'
+import gsap from "gsap";
+
+const lenis = new Lenis()
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0)
 // -- vars --
 
 
@@ -19,7 +33,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 function hackerAnimation(el, onend) {
-  let ll = "ABDEFGHIJKLMNOPQRSTUVWXYUZabcdefghijklmnopqrstuvwxyz1234567890"
+  let ll = "ABDEFGHIJKLMNOPQRSTUVWXYUZ1234567890"
   let ee = 0;
   document.querySelectorAll(el).forEach(async (element) => {
     let i = "HASAN";
@@ -49,12 +63,13 @@ function hackerAnimation(el, onend) {
 async function anime() {
   gsap.to(".project-con", {
     x: -(window.innerWidth * 1.5),
-    duration: 2,
+    duration: 3,
     scrollTrigger: {
       trigger: ".project-con",
-      // start: "top-=30 top",
+      start: "top+=30 top",
       // endTrigger: ".end",
-      // end: "bottom top",
+      end: "bottom+=30 top",
+      // markers: true,
       pin: true,
       scrub: 1,
     }
@@ -94,9 +109,9 @@ async function loder() {
 
 window.onload = function () {
   document.querySelector('#last').onclick = () => {
-    lenis.scrollTo('.main', { duration: 8, lock: true, easing: (x) => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2 })
+    lenis.scrollTo('.front', { duration: 8, lock: true, easing: (x) => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2 })
   }
-  new Typed(".main h1", {
+  new Typed(".front h1", {
     strings: ["Bros", "sis", "coder"],
     // ["bros","sis","man","dog","chad","human","wolf"],
     typeSpeed: 50,
